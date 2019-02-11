@@ -11,7 +11,8 @@
   - Click **Create a new private app**
   - Make sure to give the app read and write permissions for theme templates and theme assets
   ![App Permission](/images/private-app-permissions.png)
-  - On the app's detail page copy the API password. This will be put in an environment variable in the Slate build tool.
+  - On the app's detail page copy the API password. This password will be put in an environment variable in the Slate build tool.
+  - Go to **Online Store > Preferences** and disable password protection. Doing this makes the store public.
 
 ## Seed the store
 
@@ -39,11 +40,17 @@ Example `.env` file:
 ```
 SLATE_STORE=pat-morning-bytes.myshopify.com
 SLATE_PASSWORD=1050e214b9c682b77be91ae087d59427
-SLATE_THEME_ID=live
+SLATE_THEME_ID=61050060864
 ```
 
 With the environment setup, let's deploy our theme!
 
 ```
 $ npm run deploy
+```
+
+After the theme is deployed we can start a watch for automatic uploading.
+
+```
+$ npm run watch
 ```
