@@ -77,6 +77,7 @@ All shopify themes contain the following directories under the `src` folder:
   - Slate V1 uses webpack under the hood to compile JS and SCSS files.
   - Has watch feature for automatic file uploading and browser live reloading via BrowserSync
   - Allows for local asset server for JS and CSS
+  - V1 added code splitting out of the box based on template file https://shopify.github.io/slate/docs/template-and-layout-bundles
 
 ## Liquid
 
