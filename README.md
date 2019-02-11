@@ -1,45 +1,49 @@
-[![Build Status](https://travis-ci.org/Shopify/starter-theme.svg?branch=master)](https://travis-ci.org/Shopify/starter-theme)
+# Shopify Morning Bytes
 
-# Starter Theme
+## Setup a development store
 
-> **Starter Theme and [Slate v1](https://github.com/Shopify/slate) are currently in beta!** You should expect potentially breaking changes between updates and more bugs than a finalized release. Slate v1.0 has not yet been tested on Windows.
+- Sign up for a Shopify developer account at: `https://developers.shopify.com/`
+- On the partner dashboard go to **Development stores** and click on **Create store**
+- Enter details like your store name, address, and login info
+- Login to your newly created store and add a new private app. This private app is how the build tools will be able to push code to your store.
+  - Once logged in to your newly created store, go to **Apps** on the sidebar. Then click **Manage private apps**
+  ![Private Apps](/images/private-app.png)
+  - Click **Create a new private app**
+  - Make sure to give the app read and write permissions for theme templates and theme assets
+  ![App Permission](/images/private-app-permissions.png)
+  - On the app's detail page copy the API password. This will be put in an environment variable in the Slate build tool.
 
-Starter Theme represents the Shopify Themes Team's opinionated starting point for new Slate theme projects. It strives to include up-to-date best practices and solutions that we have deemed needed for the majority of themes we build. It is a reflection of what’s possible when building a theme!
+## Seed the store
 
-## Intentional lack of styles
-
-When launching Starter Theme for the first time, you may notice a lack of CSS styles. Is Starter Theme broken? Definitely not! Keep in mind this was done intentionally. Starter Theme is not a framework but rather a starting point for your project. It contains all the files the Shopify Themes team considers to be the bare essentials to building a Shopify theme.
-
-For templates and snippets, standard Liquid tags and logic have been included with little to no markup, classes, or other code that you will need to remove. The [`src/styles/theme.scss`](https://github.com/Shopify/starter-theme/blob/master/src/assets/styles/theme.scss) file contains extremely limited styling to not get in the way of developers' CSS preferences. The JavaScript files contain most of our [helper scripts](https://github.com/Shopify/theme-scripts/tree/master/packages) and [lazysizes](https://github.com/aFarkas/lazysizes) for responsive image lazy loading.
-
-## System requirements
-
-You'll want to ensure you have the following already installed on your local machine before getting started with Starter theme:
-
-- **Node:** The current LTS (long-term support) release. We like to use a Node Version Manager like [NVM](https://github.com/creationix/nvm).
-
-- **NPM 5+ or Yarn:** Both of these package managers have [ups and downs](https://blog.risingstack.com/yarn-vs-npm-node-js-package-managers/), choose whichever you prefer. Follow the installation instructions [for Yarn](https://yarnpkg.com/en/docs/install) or [NPM](https://www.npmjs.com/get-npm) to make sure you're using the latest version.
+Now that we have a store we need some stuff to sell.
+- Download [apparel.csv](/import/apparel.csv)
+- Go to **Products** and click on import to upload the csv file
 
 ## Getting started
 
-To get started with Starter Theme, run the following command in your terminal:
+Install node dependencies:
+```
+$ npm install
+```
+
+Create a `.env` file and put in the following environment variables:
+
+| ENV Variable | Description | Example |
+| --- | --- | --- |
+| `SLATE_STORE` | The domain name for the store | `pat-morning-bytes.myshopify.com` |
+| `SLATE_PASSWORD` | The API password for the private app | `1049e214b9c682b77be91ae087d59427` |
+| `SLATE_THEME` | Theme ID or `live` for currently published theme | `61050060864` |
+
+Example `.env` file:
 
 ```
-$ yarn create slate-theme my-new-theme
+SLATE_STORE=pat-morning-bytes.myshopify.com
+SLATE_PASSWORD=1050e214b9c682b77be91ae087d59427
+SLATE_THEME_ID=live
 ```
 
-For more information on connecting your new project with a Shopify store, see the [Slate docs](https://github.com/Shopify/slate/wiki/3.-Connect-to-your-store).
+With the environment setup, let's deploy our theme!
 
-## Contributing
-
-For help on setting up the repository locally, building, testing, and contributing
-please see [CONTRIBUTING.md](https://github.com/Shopify/starter-theme/blob/master/CONTRIBUTING.md).
-
-## Code of Conduct
-
-All developers who wish to contribute through code or issues, take a look at the
-[Code of Conduct](https://github.com/Shopify/starter-theme/blob/master/CODE_OF_CONDUCT.md).
-
-## License
-
-Copyright © 2018 Shopify. See [LICENSE](https://github.com/Shopify/starter-theme/blob/master/LICENSE) for further details.
+```
+$ npm run deploy
+```
