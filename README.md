@@ -55,6 +55,21 @@ After the theme is deployed we can start a watch for automatic uploading.
 $ npm run watch
 ```
 
+## Code Structure
+
+All shopify themes contain the following directories under the `src` folder:
+
+| Directory | Description |
+| --- | --- | --- |
+| `assets` | Contains all the static assets used in the theme like images. |
+| `config` | Includes theme and section settings. |
+| `layout` | Holds the `theme.liquid` file which all other content is rendered in. |
+| `locales` | Contains files for translating into different languages. |
+| `scripts ` | Contains JS modules |
+| `sections` | Theme sections. |
+| `snippets` | Snippet files. Bits of code that can be included in sections. |
+| `templates` | Includes templates for products, blogs, pages, etc. |
+
 ## Slate
 
 - Slate is a toolkit for quickly developing themes.
